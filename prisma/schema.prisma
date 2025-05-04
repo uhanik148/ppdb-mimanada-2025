@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CalonSiswa {
+  id        String   @id @default(uuid())
+  nama      String
+  password  String
+  nisn      String   @unique
+  createdAt DateTime @default(now())
+  forms     Form[]
+}
+
+model Form {
+  id                 String     @id @default(uuid())
+  calonSiswaId       String     
+  nik                String
+  tk                 String
+  tanggalLahir       DateTime
+  tempatLahir        String
+  alamat             String
+  agama              String
+  hobi               String
+  namaSekolah        String
+  statusSekolahAsal  String
+  alamatSekolah      String
+  namaWali           String
+  ttlWali            String
+  pekerjaanWali      String
+  pendapatanWali     String
+  noRumah            String
+  dokumenPersyaratan String?   // Link Google Drive disimpan di sini
+  createdAt          DateTime   @default(now())
+  calonSiswa         CalonSiswa @relation(fields: [calonSiswaId], references: [id])
+}
+
+model Admin {
+  id       String @id @default(uuid())
+  name     String @unique
+  password String
+}
+
+model HomepageContent {
+  id                 Int      @id @default(autoincrement())
+  heroTitle          String
+  heroSubtitle       String
+  heroImage          String
+  aboutTitle         String
+  aboutDescription   String
+  registrationInfo   String
+  registrationSteps  String
+  requirements       String
+  ppdbImages         String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  facilities         Facility[]
+}
+model Facility {
+  id                  Int               @id @default(autoincrement())
+  title               String
+  content             String
+  homepageContentId   Int
+  homepageContent     HomepageContent  @relation(fields: [homepageContentId], references: [id])
+}
+
+model InfoPendaftaranContent {
+  id           Int     @id @default(autoincrement())
+  sectionTitle String
+  description  String
+  brosurUrl    String?
+  googleDocUrl String?
+  daftarUrl    String?
+}
+
+model Profil {
+  id             Int     @id @default(autoincrement())
+  tentang        String
+  visi           String
+  misi           String
+  kepalaMadrasah String?
+  sambutan       String?
+  keunggulan     String?
+}
