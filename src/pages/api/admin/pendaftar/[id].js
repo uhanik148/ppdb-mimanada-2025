@@ -1,3 +1,4 @@
+import { deleteFile } from '@/lib/drive';
 import prisma from '@/lib/prisma';
 
 export default async function handler(req, res) {
@@ -52,9 +53,23 @@ export default async function handler(req, res) {
 				console.log(calon);
 				// Hapus form jika ada
 				if (calon.forms) {
-					// forms is an array, so we need to delete each form
+					// Hapus file dokumen dari Google Drive jika ada
 					if (calon.forms.length > 0) {
 						for (const form of calon.forms) {
+							if (form.dokumenPersyaratan) {
+								// Ekstrak ID file dari URL Google Drive
+								const urlParts = form.dokumenPersyaratan.split('/');
+								const fileId = urlParts[urlParts.length - 1];
+
+								try {
+									await deleteFile(fileId);
+									console.log(`Berhasil menghapus file dengan ID: ${fileId}`);
+								} catch (error) {
+									console.error(`Gagal menghapus file: ${error.message}`);
+								}
+							}
+
+							// Hapus form dari database
 							await prisma.form.delete({
 								where: { id: form.id },
 							});

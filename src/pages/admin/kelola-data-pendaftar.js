@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 export default function KelolaDataPendaftar() {
-	const [pendaftar, setPendaftar] = useState([]);
+	const [pendaftar, setPendaftar] = useState({ count_data_lengkap: 0, data: [] });
 	const [loading, setLoading] = useState(true);
 	const router = useRouter();
 
@@ -72,7 +72,7 @@ export default function KelolaDataPendaftar() {
 						</tr>
 					</thead>
 					<tbody>
-						{pendaftar.map((siswa, index) => (
+						{pendaftar.data.map((siswa, index) => (
 							<tr
 								key={siswa.nisn}
 								className='hover:bg-gray-50'
