@@ -2,11 +2,13 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 export default function Step3Upload({ formData, calonSiswaId, setLoading }) {
 	const [file, setFile] = useState(null);
 	const [submitSuccess, setSubmitSuccess] = useState(false);
 	const [errorDetails, setErrorDetails] = useState(null);
+	const router = useRouter();
 
 	const handleFileChange = (e) => {
 		const selectedFile = e.target.files[0];
@@ -65,9 +67,24 @@ export default function Step3Upload({ formData, calonSiswaId, setLoading }) {
 
 			console.log('Upload success:', uploadRes.data);
 			setSubmitSuccess(true);
+			router.push('/');
 			toast.success('Pendaftaran berhasil dikirim!');
 		} catch (error) {
-			// Error handling code remains the same
+			console.error('Error saat mengirim formulir:', error);
+			setErrorDetails(error);
+
+			// Tampilkan pesan error yang spesifik
+			const errorMessage = error.response?.data?.message || error.message || 'Terjadi kesalahan saat mengirim formulir';
+			toast.error(errorMessage);
+
+			// Tampilkan notifikasi untuk pengguna
+			if (error.response?.status === 413) {
+				toast.error('Ukuran file terlalu besar. Maksimal 5MB.');
+			} else if (error.response?.status === 400) {
+				toast.error('Data tidak valid. Periksa kembali formulir Anda.');
+			} else if (error.response?.status === 500) {
+				toast.error('Terjadi kesalahan pada server. Silakan coba lagi nanti.');
+			}
 		} finally {
 			setLoading(false);
 		}
