@@ -71,7 +71,7 @@ async function main() {
 			tesSeleksi: new Date('2014-09-07T00:00:00.000Z'),
 			pengumuman: new Date('1991-04-28T00:00:00.000Z'),
 			daftarUlang: new Date('1977-03-20T00:00:00.000Z'),
-			persyaratanDokumen: 'Sed quia officiis et',
+			persyaratanDokumen: 'Fotokopi Akta Kelahiran (1 lembar).\nFotokopi Kartu Keluarga (1 lembar).\nIjazah TK/RA atau Surat Keterangan (1 lembar).\nFotokopi PKH (jika ada) (1 lembar).',
 			biayaPendaftaran: 25,
 			kontakInformasi: 'Elok Nur Afidah:+6285645051776.\nMustaftichatull:+6281555993880.\nDewi Fatihatul:+6281234663695.',
 			emailInformasi: 'ribyheqyn@mailinator.com',

@@ -30,19 +30,21 @@ export default async function handler(req, res) {
 				daftarUrl,
 			} = req.body;
 
-			// Pastikan semua field sesuai dengan schema Prisma
+			console.log('========== BODY =============');
+			console.log(req.body);
+			// // Pastikan semua field sesuai dengan schema Prisma
 			let data = {
 				sectionTitle,
 				description,
-				mulaiPendaftaranOnline: mulaiPendaftaranOnline ? new Date(mulaiPendaftaranOnline) : null,
-				selesaiPendaftaranOnline: selesaiPendaftaranOnline ? new Date(selesaiPendaftaranOnline) : null,
-				mulaiVerifikasiBerkas: mulaiVerifikasiBerkas ? new Date(mulaiVerifikasiBerkas) : null,
-				selesaiVerifikasiBerkas: selesaiVerifikasiBerkas ? new Date(selesaiVerifikasiBerkas) : null,
-				tesSeleksi: tesSeleksi ? new Date(tesSeleksi) : null,
-				pengumuman: pengumuman ? new Date(pengumuman) : null,
-				daftarUlang: daftarUlang ? new Date(daftarUlang) : null,
+				mulaiPendaftaranOnline: new Date(mulaiPendaftaranOnline),
+				selesaiPendaftaranOnline: new Date(selesaiPendaftaranOnline),
+				mulaiVerifikasiBerkas: new Date(mulaiVerifikasiBerkas),
+				selesaiVerifikasiBerkas: new Date(selesaiVerifikasiBerkas),
+				tesSeleksi: new Date(tesSeleksi),
+				pengumuman: new Date(pengumuman),
+				daftarUlang: new Date(daftarUlang),
 				persyaratanDokumen,
-				biayaPendaftaran: biayaPendaftaran ? parseFloat(biayaPendaftaran) : null,
+				biayaPendaftaran: parseFloat(biayaPendaftaran),
 				kontakInformasi,
 				emailInformasi,
 				prosedur,
@@ -51,6 +53,7 @@ export default async function handler(req, res) {
 				daftarUrl,
 			};
 
+			console.log('========== data =============');
 			console.log(data);
 
 			let result;
