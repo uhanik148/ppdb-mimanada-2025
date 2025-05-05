@@ -40,29 +40,26 @@ export default async function handler(req, res) {
 				// Cari calonSiswa dulu
 				let calon = await prisma.calonSiswa.findUnique({
 					where: { nisn: id },
-					include: { form: { include: { berkas: true } } },
+					include: {
+						forms: true,
+					},
 				});
-				if (!calon) {
-					calon = await prisma.calonSiswa.findUnique({
-						where: { id },
-						include: { form: { include: { berkas: true } } },
-					});
-				}
+
 				if (!calon) {
 					return res.status(404).json({ error: 'Data tidak ditemukan' });
 				}
 
-				// Hapus berkas jika ada
-				if (calon.form?.berkas?.length) {
-					await prisma.berkas.deleteMany({
-						where: { formId: calon.form.id },
-					});
-				}
+				console.log(calon);
 				// Hapus form jika ada
-				if (calon.form) {
-					await prisma.form.delete({
-						where: { id: calon.form.id },
-					});
+				if (calon.forms) {
+					// forms is an array, so we need to delete each form
+					if (calon.forms.length > 0) {
+						for (const form of calon.forms) {
+							await prisma.form.delete({
+								where: { id: form.id },
+							});
+						}
+					}
 				}
 				// Hapus calonSiswa
 				await prisma.calonSiswa.delete({
