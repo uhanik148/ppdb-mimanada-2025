@@ -8,24 +8,25 @@ export default function KelolaInfoPendaftar() {
 	const [loading, setLoading] = useState(true);
 	const [currentId, setCurrentId] = useState(null);
 	const [infoPendaftaran, setInfoPendaftaran] = useState([]);
+	console.log(infoPendaftaran);
 	const [formData, setFormData] = useState({
-		sectionTitle: '',
-		description: '',
-		mulaiPendaftaranOnline: '',
-		selesaiPendaftaranOnline: '',
-		mulaiVerifikasiBerkas: '',
-		selesaiVerifikasiBerkas: '',
-		tesSeleksi: '',
-		pengumuman: '',
-		daftarUlang: '',
-		persyaratanDokumen: '',
-		biayaPendaftaran: '',
-		kontakInformasi: '',
-		emailInformasi: '',
-		prosedur: '',
-		brosurUrl: '',
-		googleDocUrl: '',
-		daftarUrl: '',
+		sectionTitle: infoPendaftaran?.sectionTitle || '',
+		description: infoPendaftaran?.description || '',
+		mulaiPendaftaranOnline: infoPendaftaran?.mulaiPendaftaranOnline || '',
+		selesaiPendaftaranOnline: infoPendaftaran?.selesaiPendaftaranOnline || '',
+		mulaiVerifikasiBerkas: infoPendaftaran?.mulaiVerifikasiBerkas || '',
+		selesaiVerifikasiBerkas: infoPendaftaran?.selesaiVerifikasiBerkas || '',
+		tesSeleksi: infoPendaftaran?.tesSeleksi || '',
+		pengumuman: infoPendaftaran?.pengumuman || '',
+		daftarUlang: infoPendaftaran?.daftarUlang || '',
+		persyaratanDokumen: infoPendaftaran?.persyaratanDokumen || '',
+		biayaPendaftaran: infoPendaftaran?.biayaPendaftaran || '',
+		kontakInformasi: infoPendaftaran?.kontakInformasi || '',
+		emailInformasi: infoPendaftaran?.emailInformasi || '',
+		prosedur: infoPendaftaran?.prosedur || '',
+		brosurUrl: infoPendaftaran?.brosurUrl || '',
+		googleDocUrl: infoPendaftaran?.googleDocUrl || '',
+		daftarUrl: infoPendaftaran?.daftarUrl || '',
 	});
 
 	useEffect(() => {
@@ -127,7 +128,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='text'
 					name='sectionTitle'
-					value={infoPendaftaran?.sectionTitle || formData.sectionTitle || 'Ipsum sunt in alias'}
+					value={formData.sectionTitle || ''}
 					onChange={handleChange}
 					placeholder='Contoh: Langkah Pendaftaran Online'
 					style={styles.input}
@@ -136,7 +137,7 @@ export default function KelolaInfoPendaftar() {
 				<label style={styles.label}>Deskripsi</label>
 				<textarea
 					name='description'
-					value={infoPendaftaran?.description || formData.description || 'Qui nihil doloremque'}
+					value={formData.description || ''}
 					onChange={handleChange}
 					placeholder='Contoh: Silakan ikuti langkah-langkah berikut...'
 					style={styles.textarea}
@@ -146,10 +147,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='date'
 					name='mulaiPendaftaranOnline'
-					value={
-						(infoPendaftaran?.mulaiPendaftaranOnline ? new Date(infoPendaftaran.mulaiPendaftaranOnline).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10)) ||
-						formData.mulaiPendaftaranOnline
-					}
+					value={formData.mulaiPendaftaranOnline || new Date().toISOString().slice(0, 10)}
 					onChange={handleChange}
 					style={styles.input}
 				/>
@@ -158,10 +156,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='date'
 					name='selesaiPendaftaranOnline'
-					value={
-						(infoPendaftaran?.selesaiPendaftaranOnline ? new Date(infoPendaftaran.selesaiPendaftaranOnline).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10)) ||
-						formData.selesaiPendaftaranOnline
-					}
+					value={formData.selesaiPendaftaranOnline || new Date().toISOString().slice(0, 10)}
 					onChange={handleChange}
 					style={styles.input}
 				/>
@@ -170,7 +165,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='date'
 					name='mulaiVerifikasiBerkas'
-					value={(infoPendaftaran?.mulaiVerifikasiBerkas ? new Date(infoPendaftaran.mulaiVerifikasiBerkas).toISOString().slice(0, 10) : '1973-06-10') || formData.mulaiVerifikasiBerkas}
+					value={formData.mulaiVerifikasiBerkas || new Date().toISOString().slice(0, 10)}
 					onChange={handleChange}
 					style={styles.input}
 				/>
@@ -179,7 +174,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='date'
 					name='selesaiVerifikasiBerkas'
-					value={(infoPendaftaran?.selesaiVerifikasiBerkas ? new Date(infoPendaftaran.selesaiVerifikasiBerkas).toISOString().slice(0, 10) : '1973-06-10') || formData.selesaiVerifikasiBerkas}
+					value={formData.selesaiVerifikasiBerkas || new Date().toISOString().slice(0, 10)}
 					onChange={handleChange}
 					style={styles.input}
 				/>
@@ -188,7 +183,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='date'
 					name='tesSeleksi'
-					value={(infoPendaftaran?.tesSeleksi ? new Date(infoPendaftaran.tesSeleksi).toISOString().slice(0, 10) : '2023-03-25') || formData.tesSeleksi}
+					value={formData.tesSeleksi || new Date().toISOString().slice(0, 10)}
 					onChange={handleChange}
 					style={styles.input}
 				/>
@@ -197,7 +192,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='date'
 					name='pengumuman'
-					value={(infoPendaftaran?.pengumuman ? new Date(infoPendaftaran.pengumuman).toISOString().slice(0, 10) : '2010-11-17') || formData.pengumuman}
+					value={formData.pengumuman || new Date().toISOString().slice(0, 10)}
 					onChange={handleChange}
 					style={styles.input}
 				/>
@@ -206,7 +201,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='date'
 					name='daftarUlang'
-					value={(infoPendaftaran?.daftarUlang ? new Date(infoPendaftaran.daftarUlang).toISOString().slice(0, 10) : '2020-07-16') || formData.daftarUlang}
+					value={formData.daftarUlang || new Date().toISOString().slice(0, 10)}
 					onChange={handleChange}
 					style={styles.input}
 				/>
@@ -214,7 +209,7 @@ export default function KelolaInfoPendaftar() {
 				<label style={styles.label}>Persyaratan Dokumen</label>
 				<textarea
 					name='persyaratanDokumen'
-					value={infoPendaftaran?.persyaratanDokumen || formData.persyaratanDokumen || 'Veniam nulla pariat'}
+					value={formData.persyaratanDokumen || ''}
 					onChange={handleChange}
 					placeholder='Contoh: KTP. Ijazah. Kartu Keluarga. Akta Kelahiran. Pas Foto.'
 					style={styles.textarea}
@@ -225,7 +220,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='number'
 					name='biayaPendaftaran'
-					value={infoPendaftaran?.biayaPendaftaran || formData.biayaPendaftaran || 18}
+					value={formData.biayaPendaftaran || 0}
 					onChange={handleChange}
 					placeholder='Contoh: 150000'
 					style={styles.input}
@@ -235,7 +230,7 @@ export default function KelolaInfoPendaftar() {
 				<textarea
 					type='text'
 					name='kontakInformasi'
-					value={infoPendaftaran?.kontakInformasi || formData.kontakInformasi || 'Eos sed non quaerat '}
+					value={formData.kontakInformasi || ''}
 					onChange={handleChange}
 					placeholder='Contoh: 081234567890'
 					style={styles.input}
@@ -246,7 +241,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='email'
 					name='emailInformasi'
-					value={infoPendaftaran?.emailInformasi || formData.emailInformasi || 'myjun@mailinator.com'}
+					value={formData.emailInformasi || ''}
 					onChange={handleChange}
 					placeholder='Contoh: info@sekolah.ac.id'
 					style={styles.input}
@@ -255,7 +250,7 @@ export default function KelolaInfoPendaftar() {
 				<label style={styles.label}>Prosedur Pendaftaran</label>
 				<textarea
 					name='prosedur'
-					value={infoPendaftaran?.prosedur || formData.prosedur || 'Repellendus Volupta'}
+					value={formData.prosedur || ''}
 					onChange={handleChange}
 					placeholder='Contoh: 1. Isi formulir, 2. Bayar biaya pendaftaran, ...'
 					style={styles.textarea}
@@ -266,7 +261,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='text'
 					name='brosurUrl'
-					value={infoPendaftaran?.brosurUrl || formData.brosurUrl || 'Dolor magni fuga La'}
+					value={formData.brosurUrl || ''}
 					onChange={handleChange}
 					placeholder='https://example.com/brosur.pdf'
 					style={styles.input}
@@ -277,7 +272,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='text'
 					name='googleDocUrl'
-					value={infoPendaftaran?.googleDocUrl || formData.googleDocUrl || 'Esse lorem facere e'}
+					value={formData.googleDocUrl || ''}
 					onChange={handleChange}
 					placeholder='https://docs.google.com/...'
 					style={styles.input}
@@ -287,7 +282,7 @@ export default function KelolaInfoPendaftar() {
 				<input
 					type='text'
 					name='daftarUrl'
-					value={infoPendaftaran?.daftarUrl || formData.daftarUrl || 'Quod praesentium ven'}
+					value={formData.daftarUrl || ''}
 					onChange={handleChange}
 					placeholder='https://forms.gle/...'
 					style={styles.input}

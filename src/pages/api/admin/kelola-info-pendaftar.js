@@ -32,7 +32,7 @@ export default async function handler(req, res) {
 
 			console.log('========== BODY =============');
 			console.log(req.body);
-			// // Pastikan semua field sesuai dengan schema Prisma
+
 			let data = {
 				sectionTitle,
 				description,

@@ -74,78 +74,106 @@ export default function Pendaftaran() {
 
 					<h3 className='text-2xl font-semibold text-green-700 mb-4 mt-8'>📋 Persyaratan Pendaftaran Siswa Baru</h3>
 					<ul className='list-disc pl-5 space-y-3 text-gray-700 leading-relaxed'>
-						<li className='flex items-center space-x-3 hover:bg-gray-100 p-2 rounded-lg transition duration-300'>
-							<svg
-								className='w-5 h-5 text-green-700'
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-							>
-								<path
-									stroke-linecap='round'
-									stroke-linejoin='round'
-									stroke-width='2'
-									d='M3 12l2 2 4-4m2 4l5-5 5 5'
-								></path>
-							</svg>
-							<span>Fotokopi Akta Kelahiran</span>
-							<span className='ml-auto text-gray-500'>1 lembar</span>
-						</li>
-						<li className='flex items-center space-x-3 hover:bg-gray-100 p-2 rounded-lg transition duration-300'>
-							<svg
-								className='w-5 h-5 text-green-700'
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-							>
-								<path
-									stroke-linecap='round'
-									stroke-linejoin='round'
-									stroke-width='2'
-									d='M3 12l2 2 4-4m2 4l5-5 5 5'
-								></path>
-							</svg>
-							<span>Fotokopi Kartu Keluarga (KK)</span>
-							<span className='ml-auto text-gray-500'>1 lembar</span>
-						</li>
-						<li className='flex items-center space-x-3 hover:bg-gray-100 p-2 rounded-lg transition duration-300'>
-							<svg
-								className='w-5 h-5 text-green-700'
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-							>
-								<path
-									stroke-linecap='round'
-									stroke-linejoin='round'
-									stroke-width='2'
-									d='M3 12l2 2 4-4m2 4l5-5 5 5'
-								></path>
-							</svg>
-							<span>Fotokopi Ijazah TK/RA</span>
-							<span className='ml-auto text-gray-500'>1 lembar</span>
-						</li>
-						<li className='flex items-center space-x-3 hover:bg-gray-100 p-2 rounded-lg transition duration-300'>
-							<svg
-								className='w-5 h-5 text-green-700'
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-							>
-								<path
-									stroke-linecap='round'
-									stroke-linejoin='round'
-									stroke-width='2'
-									d='M3 12l2 2 4-4m2 4l5-5 5 5'
-								></path>
-							</svg>
-							<span>Fotokopi PKH (bagi yang punya)</span>
-							<span className='ml-auto text-gray-500'>1 lembar</span>
-						</li>
+						{infoPendaftaran?.persyaratanDokumen
+							?.split('.')
+							.filter((item) => item.trim())
+							.map((item, index) => (
+								<li
+									key={index}
+									className='flex items-center space-x-3 hover:bg-gray-100 p-2 rounded-lg transition duration-300'
+								>
+									<svg
+										className='w-5 h-5 text-green-700'
+										xmlns='http://www.w3.org/2000/svg'
+										fill='none'
+										viewBox='0 0 24 24'
+										stroke='currentColor'
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M3 12l2 2 4-4m2 4l5-5 5 5'
+										></path>
+									</svg>
+									<span>{item.trim()}</span>
+								</li>
+							)) || (
+							<>
+								<li className='flex items-center space-x-3 hover:bg-gray-100 p-2 rounded-lg transition duration-300'>
+									<svg
+										className='w-5 h-5 text-green-700'
+										xmlns='http://www.w3.org/2000/svg'
+										fill='none'
+										viewBox='0 0 24 24'
+										stroke='currentColor'
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M3 12l2 2 4-4m2 4l5-5 5 5'
+										></path>
+									</svg>
+									<span>Fotokopi Akta Kelahiran</span>
+									<span className='ml-auto text-gray-500'>1 lembar</span>
+								</li>
+								<li className='flex items-center space-x-3 hover:bg-gray-100 p-2 rounded-lg transition duration-300'>
+									<svg
+										className='w-5 h-5 text-green-700'
+										xmlns='http://www.w3.org/2000/svg'
+										fill='none'
+										viewBox='0 0 24 24'
+										stroke='currentColor'
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M3 12l2 2 4-4m2 4l5-5 5 5'
+										></path>
+									</svg>
+									<span>Fotokopi Kartu Keluarga (KK)</span>
+									<span className='ml-auto text-gray-500'>1 lembar</span>
+								</li>
+								<li className='flex items-center space-x-3 hover:bg-gray-100 p-2 rounded-lg transition duration-300'>
+									<svg
+										className='w-5 h-5 text-green-700'
+										xmlns='http://www.w3.org/2000/svg'
+										fill='none'
+										viewBox='0 0 24 24'
+										stroke='currentColor'
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M3 12l2 2 4-4m2 4l5-5 5 5'
+										></path>
+									</svg>
+									<span>Fotokopi Ijazah TK/RA</span>
+									<span className='ml-auto text-gray-500'>1 lembar</span>
+								</li>
+								<li className='flex items-center space-x-3 hover:bg-gray-100 p-2 rounded-lg transition duration-300'>
+									<svg
+										className='w-5 h-5 text-green-700'
+										xmlns='http://www.w3.org/2000/svg'
+										fill='none'
+										viewBox='0 0 24 24'
+										stroke='currentColor'
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M3 12l2 2 4-4m2 4l5-5 5 5'
+										></path>
+									</svg>
+									<span>Fotokopi PKH (bagi yang punya)</span>
+									<span className='ml-auto text-gray-500'>1 lembar</span>
+								</li>
+							</>
+						)}
 					</ul>
 
 					<a

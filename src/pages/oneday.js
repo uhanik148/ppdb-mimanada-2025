@@ -110,22 +110,27 @@ export default function Oneday() {
 							<div className='bg-slate-50 p-4 rounded-lg border-l-4 border-green-900'>
 								<h5 className='font-bold text-green-900 mb-3 text-lg'>Persyaratan Dokumen:</h5>
 								<ul className='space-y-2 text-gray-800'>
-									<li className='flex items-start'>
-										<span className='inline-block w-4 h-4 mr-2 mt-1 bg-green-900 rounded-full flex-shrink-0'></span>
-										Fotokopi Akta Kelahiran (1 lembar)
-									</li>
-									<li className='flex items-start'>
-										<span className='inline-block w-4 h-4 mr-2 mt-1 bg-green-900 rounded-full flex-shrink-0'></span>
-										Fotokopi Kartu Keluarga (1 lembar)
-									</li>
-									<li className='flex items-start'>
-										<span className='inline-block w-4 h-4 mr-2 mt-1 bg-green-900 rounded-full flex-shrink-0'></span>
-										Ijazah TK/RA atau Surat Keterangan (1 lembar)
-									</li>
-									<li className='flex items-start'>
-										<span className='inline-block w-4 h-4 mr-2 mt-1 bg-green-900 rounded-full flex-shrink-0'></span>
-										Fotokopi PKH (jika ada) (1 lembar)
-									</li>
+									{infoPendaftaran?.persyaratanDokumen
+										? infoPendaftaran.persyaratanDokumen.split('.\n').map((dokumen, index) => (
+												<li
+													key={index}
+													className='flex items-start'
+												>
+													<span className='inline-block w-4 h-4 mr-2 mt-1 bg-green-900 rounded-full flex-shrink-0'></span>
+													{dokumen}
+												</li>
+										  ))
+										: ['Fotokopi Akta Kelahiran (1 lembar)', 'Fotokopi Kartu Keluarga (1 lembar)', 'Ijazah TK/RA atau Surat Keterangan (1 lembar)', 'Fotokopi PKH (jika ada) (1 lembar)'].map(
+												(dokumen, index) => (
+													<li
+														key={index}
+														className='flex items-start'
+													>
+														<span className='inline-block w-4 h-4 mr-2 mt-1 bg-green-900 rounded-full flex-shrink-0'></span>
+														{dokumen}
+													</li>
+												)
+										  )}
 								</ul>
 							</div>
 						</div>
