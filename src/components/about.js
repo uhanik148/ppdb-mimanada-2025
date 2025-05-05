@@ -1,4 +1,40 @@
+import { useEffect, useState } from 'react';
+
 export default function About() {
+	const [isLoading, setIsLoading] = useState(true);
+	const [heroData, setHeroData] = useState({
+		id: 2,
+		heroTitle: "Selamat Datang di MI Ma'arif Nailul Huda - UPDATE",
+		heroSubtitle: 'Penerimaan Peserta Didik Baru Tahun 2025/2026',
+		heroImage: '/alurppdb.jpg',
+		aboutTitle: "Tentang MI Ma'arif Nailul Huda",
+		aboutDescription: 'Madrasah unggulan berbasis Islam, ilmu pengetahuan, dan teknologi.',
+		registrationInfo: 'Informasi lengkap PPDB Tahun Ajaran 2025/2026',
+		registrationSteps: '1. Isi Formulir\n2. Upload Dokumen\n3. Verifikasi Data\n4. Pengumuman',
+		requirements: '1. Fotokopi Akta\n2. Fotokopi Kartu Keluarga\n3. Pas Foto 3x4',
+		ppdbImages: '/alurppdb.jpg',
+		createdAt: '2025-05-05T07:20:32.880Z',
+		updatedAt: '2025-05-05T07:36:54.709Z',
+	});
+
+	useEffect(() => {
+		const fetchHeroData = async () => {
+			try {
+				const response = await fetch('/api/admin/home');
+				if (response.ok) {
+					const data = await response.json();
+					console.log(data);
+					setHeroData(data);
+				}
+			} catch (error) {
+				console.error('Error fetching hero data:', error);
+			} finally {
+				setIsLoading(false);
+			}
+		};
+
+		fetchHeroData();
+	}, []);
 	return (
 		<section
 			style={{
@@ -36,7 +72,7 @@ export default function About() {
 						letterSpacing: '1px',
 					}}
 				>
-					🌿 Sekilas Mengenai Kami 🌿
+					{isLoading ? 'Memuat...' : heroData?.aboutTitle}
 				</h2>
 
 				<div
@@ -51,18 +87,7 @@ export default function About() {
 						transition: 'all 0.3s ease',
 					}}
 				>
-					<p style={{ marginBottom: '25px', textAlign: 'justify' }}>
-						MI Kebonsari didirikan pada tahun <span style={{ fontWeight: '600', color: '#2e7d32' }}>1994</span> oleh para tokoh masyarakat Kebonsari yang memiliki komitmen kuat terhadap pentingnya
-						pendidikan bagi generasi penerus. Keberadaan madrasah ini bertujuan untuk menyediakan fasilitas pendidikan yang berkualitas serta mencetak siswa-siswi yang unggul dalam berbagai aspek,
-						baik akademik maupun non-akademik.
-					</p>
-
-					<p style={{ textAlign: 'justify' }}>
-						Saat ini, MI Kebonsari beroperasi dalam satu kompleks dengan Pondok Pesantren <span style={{ fontWeight: '600', color: '#2e7d32' }}>"ATTAUBAH"</span>, sebuah lembaga pendidikan Islam yang
-						berperan dalam pembentukan karakter dan akhlak peserta didik. Pondok pesantren ini diasuh oleh <span style={{ fontWeight: '600' }}>KH. Nuriyadin, M.Fil.I</span>, yang juga menjabat sebagai
-						Ketua Pengurus Maarif Nailul Huda Kebonsari. Dengan adanya sinergi antara MI Kebonsari dan Pondok Pesantren "ATTAUBAH", diharapkan lulusan madrasah ini tidak hanya memiliki kecerdasan
-						intelektual, tetapi juga kedalaman spiritual serta karakter yang kuat untuk menghadapi tantangan masa depan.
-					</p>
+					{isLoading ? <p style={{ marginBottom: '25px', textAlign: 'justify' }}>Memuat...</p> : <p style={{ marginBottom: '25px', textAlign: 'justify' }}>{heroData?.aboutDescription}</p>}
 				</div>
 			</div>
 		</section>

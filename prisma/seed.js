@@ -58,6 +58,31 @@ async function main() {
 			},
 		},
 	});
+
+	// Seed InfoPendaftaranContent
+	await prisma.infoPendaftaranContent.create({
+		data: {
+			sectionTitle: 'Informasi Pendaftaran',
+			description: 'Tahun Ajar',
+			mulaiPendaftaranOnline: new Date('1991-07-26T00:00:00.000Z'),
+			selesaiPendaftaranOnline: new Date('2016-02-21T00:00:00.000Z'),
+			mulaiVerifikasiBerkas: new Date('1999-09-15T00:00:00.000Z'),
+			selesaiVerifikasiBerkas: new Date('1980-09-19T00:00:00.000Z'),
+			tesSeleksi: new Date('2014-09-07T00:00:00.000Z'),
+			pengumuman: new Date('1991-04-28T00:00:00.000Z'),
+			daftarUlang: new Date('1977-03-20T00:00:00.000Z'),
+			persyaratanDokumen: 'Sed quia officiis et',
+			biayaPendaftaran: 25,
+			kontakInformasi: 'Elok Nur Afidah:+6285645051776.\nMustaftichatull:+6281555993880.\nDewi Fatihatul:+6281234663695.',
+			emailInformasi: 'ribyheqyn@mailinator.com',
+			prosedur:
+				'Kunjungi website resmi sekolah.\nKlik menu Pendaftaran.\nIsi formulir dengan lengkap dan benar.\nUpload dokumen yang diperlukan.\nLakukan pembayaran biaya pendaftaran.\nCetak bukti pendaftaran.',
+			brosurUrl: '/ppdb-1.png|/ppdb-2.png',
+			googleDocUrl: 'Molestiae dignissimo',
+			daftarUrl: 'Duis quia atque amet',
+		},
+	});
+	console.log('✅ Info Pendaftaran content created!');
 	console.log('✅ Homepage content created!');
 }
 

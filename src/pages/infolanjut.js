@@ -14,7 +14,7 @@ export default function Infolanjut() {
 	useEffect(() => {
 		async function fetchProfil() {
 			try {
-				const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/admin/profil`);
+				const response = await fetch(`/api/admin/profil`);
 				if (!response.ok) {
 					throw new Error('Gagal mengambil data profil');
 				}

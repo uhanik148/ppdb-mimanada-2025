@@ -18,7 +18,7 @@ model CalonSiswa {
 
 model Form {
   id                 String     @id @default(uuid())
-  calonSiswaId       String     
+  calonSiswaId       String
   nik                String
   tk                 String
   tanggalLahir       DateTime
@@ -34,7 +34,7 @@ model Form {
   pekerjaanWali      String
   pendapatanWali     String
   noRumah            String
-  dokumenPersyaratan String?   // Link Google Drive disimpan di sini
+  dokumenPersyaratan String? // Link Google Drive disimpan di sini
   createdAt          DateTime   @default(now())
   calonSiswa         CalonSiswa @relation(fields: [calonSiswaId], references: [id])
 }
@@ -46,36 +46,51 @@ model Admin {
 }
 
 model HomepageContent {
-  id                 Int      @id @default(autoincrement())
-  heroTitle          String
-  heroSubtitle       String
-  heroImage          String
-  aboutTitle         String
-  aboutDescription   String
-  registrationInfo   String
-  registrationSteps  String
-  requirements       String
-  ppdbImages         String
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  id                Int      @id @default(autoincrement())
+  heroTitle         String
+  heroSubtitle      String
+  heroImage         String
+  aboutTitle        String
+  aboutDescription  String
+  registrationInfo  String
+  registrationSteps String
+  requirements      String
+  ppdbImages        String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  facilities         Facility[]
+  facilities Facility[]
 }
+
 model Facility {
-  id                  Int               @id @default(autoincrement())
-  title               String
-  content             String
-  homepageContentId   Int
-  homepageContent     HomepageContent  @relation(fields: [homepageContentId], references: [id])
+  id                Int             @id @default(autoincrement())
+  title             String
+  content           String
+  homepageContentId Int
+  homepageContent   HomepageContent @relation(fields: [homepageContentId], references: [id])
 }
 
 model InfoPendaftaranContent {
-  id           Int     @id @default(autoincrement())
-  sectionTitle String
-  description  String
-  brosurUrl    String?
-  googleDocUrl String?
-  daftarUrl    String?
+  id                       Int       @id @default(autoincrement())
+  sectionTitle             String?
+  description              String?
+  mulaiPendaftaranOnline   DateTime?
+  selesaiPendaftaranOnline DateTime?
+  mulaiVerifikasiBerkas    DateTime?
+  selesaiVerifikasiBerkas  DateTime?
+  tesSeleksi               DateTime?
+  pengumuman               DateTime?
+  daftarUlang              DateTime?
+  persyaratanDokumen       String?
+  biayaPendaftaran         Float?
+  kontakInformasi          String?
+  emailInformasi           String?
+  prosedur                 String?
+  brosurUrl                String?
+  googleDocUrl             String?
+  daftarUrl                String?
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
 }
 
 model Profil {
