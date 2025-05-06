@@ -23,20 +23,20 @@ export default function Step1Form({ nextStep, formData, setFormData }) {
 				}
 			} catch (error) {
 				console.error('Gagal mengambil data calon siswa:', error);
-				toast.error('Gagal mengambil data pengguna. Silakan login kembali.');
-				// Logout dan redirect ke halaman register
+				// Hapus toast.error karena tidak diimpor
 				try {
 					await axios.post('/api/auth/logout');
 					localStorage.removeItem('isLoggedIn');
+					router.push('/auth/login');
 				} catch (logoutError) {
 					console.error('Gagal logout:', logoutError);
+					router.push('/auth/login');
 				}
-				router.push('/auth/register');
 			}
 		};
 
 		fetchCalonSiswaId();
-	}, []);
+	}, [router, setFormData]);
 
 	console.log(siswa);
 	const handleChange = (e) => {

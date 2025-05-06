@@ -6,6 +6,10 @@ export default async function handler(req, res) {
 		const cookies = parse(req.headers.cookie || '');
 		const token = cookies.token;
 
+		if (!token) {
+			return res.status(401).json({ error: 'Token tidak ditemukan' });
+		}
+
 		const siswa = await prisma.calonSiswa.findUnique({
 			where: {
 				id: token,
