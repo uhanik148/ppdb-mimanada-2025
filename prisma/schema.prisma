@@ -29,6 +29,7 @@ model Form {
   namaSekolah        String
   statusSekolahAsal  String
   alamatSekolah      String
+  tipeSekolah        String
   namaWali           String
   ttlWali            String
   pekerjaanWali      String
