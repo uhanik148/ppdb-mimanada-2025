@@ -28,7 +28,7 @@ export default function RegisterPage() {
     <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-green-400 to-blue-500">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
         <div className="text-center mb-6">
-          <img src="/logo.png" alt="Logo" className="mx-auto mb-4 w-16 h-16" />
+          <img src="/Logo.png" alt="Logo" className="mx-auto mb-4 w-16 h-16" />
           <h2 className="text-2xl font-semibold text-gray-800">Silahkan Daftar terlebih dahulu</h2>
           <p className="text-sm text-gray-600">Isi data di bawah ini untuk melanjutkan</p>
         </div>
