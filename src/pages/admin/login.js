@@ -5,6 +5,7 @@ import { FaUserShield, FaLock, FaSignInAlt } from "react-icons/fa";
 export default function AdminLogin() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [showIndex, setShowIndex] = useState(null);
   const router = useRouter();
 
   const handleLogin = async () => {
@@ -22,6 +23,25 @@ export default function AdminLogin() {
     }
   };
 
+    const faqs = [
+    {
+      question: "Apa saja yang bisa dilakukan admin di halaman ini?",
+      answer:
+        "Admin memiliki akses penuh untuk mengelola konten halaman Beranda, Profil Kami, dan Info Pendaftaran. Selain itu, admin juga bisa melihat detail pendaftar dan menghapus data pendaftaran jika diperlukan.",
+    },
+    {
+      question: "Apakah halaman ini bisa diakses oleh semua orang?",
+      answer:
+        "Tidak. Hanya admin yang memiliki username dan password yang benar yang bisa masuk ke halaman ini.",
+    },
+    {
+      question: "Bagaimana jika lupa password admin?",
+      answer:
+        "Silakan hubungi pengelola sistem untuk reset password. Fitur reset otomatis belum tersedia di sistem ini.",
+    },
+  ];
+
+
   return (
     <div
       style={{
@@ -29,32 +49,26 @@ export default function AdminLogin() {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        background: "linear-gradient(to right, #f0fdf4, #eef7ef)", // hijau semu banget
-        fontFamily: "sans-serif",
+        background: "linear-gradient(to right, #e8f5e9, #f1f8e9)",
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        padding: 20,
       }}
     >
       <div
         style={{
-          background: "white",
+          background: "#fff",
           padding: "40px 30px",
           borderRadius: "16px",
-          boxShadow: "0 4px 30px rgba(0,0,0,0.1)",
+          boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
           width: "100%",
-          maxWidth: "400px",
+          maxWidth: "420px",
           textAlign: "center",
         }}
       >
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
-          <FaUserShield size={60} color="#56ab2f" />
+          <FaUserShield size={60} color="#43a047" />
         </div>
-        <h2
-          style={{
-            marginBottom: 30,
-            color: "#2e7d32",
-            fontSize: "26px",
-            fontWeight: "bold",
-          }}
-        >
+        <h2 style={{ marginBottom: 25, color: "#2e7d32", fontSize: "26px", fontWeight: "bold" }}>
           Login Admin
         </h2>
 
@@ -64,7 +78,7 @@ export default function AdminLogin() {
             alignItems: "center",
             marginBottom: 15,
             border: "1px solid #ccc",
-            borderRadius: 8,
+            borderRadius: 10,
             padding: "10px 12px",
           }}
         >
@@ -89,7 +103,7 @@ export default function AdminLogin() {
             alignItems: "center",
             marginBottom: 25,
             border: "1px solid #ccc",
-            borderRadius: 8,
+            borderRadius: 10,
             padding: "10px 12px",
           }}
         >
@@ -113,7 +127,7 @@ export default function AdminLogin() {
           style={{
             width: "100%",
             padding: "12px",
-            backgroundColor: "#56ab2f",
+            backgroundColor: "#43a047",
             color: "white",
             border: "none",
             borderRadius: 10,
@@ -123,11 +137,48 @@ export default function AdminLogin() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            marginBottom: 30,
           }}
         >
           <FaSignInAlt style={{ marginRight: 10 }} />
           Masuk
         </button>
+
+        {/* FAQ Interaktif */}
+        <div
+          style={{
+            textAlign: "left",
+            backgroundColor: "#f1f8e9",
+            padding: "20px",
+            borderRadius: "10px",
+            border: "1px solid #c8e6c9",
+          }}
+        >
+          <h3 style={{ color: "#2e7d32", marginBottom: 10, fontWeight: "bold" }}>📌 FAQ Admin</h3>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <div
+                onClick={() =>
+                  setShowIndex(showIndex === index ? null : index)
+                }
+                style={{
+                  cursor: "pointer",
+                  padding: "10px 0",
+                  borderBottom: "1px solid #ddd",
+                  fontWeight: "bold",
+                  color: "#33691e",
+                }}
+              >
+                {faq.question}
+              </div>
+              {showIndex === index && (
+                <div style={{ padding: "8px 0 16px", color: "#444" }}>
+                  {faq.answer}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
